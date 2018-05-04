@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+  finkmartin-website:
+    hostname: finkmartin-website
+    container_name: finkmartin-website
+    build: .
+    restart: always
+    ports:
+      - 10000:10000
