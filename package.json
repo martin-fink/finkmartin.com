@@ -1,10 +1,14 @@
 {
   "name": "website",
   "version": "0.1.0",
+  "author": "Martin Fink",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "NODE_ENV=development nodemon app.js",
     "grunt": "grunt",
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "yarn tslint -p .",
+    "lint:fix": "yarn tslint -p . --fix"
   },
   "dependencies": {
     "@types/body-parser": "^1.17.0",
@@ -26,9 +30,14 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.1",
     "grunt-ts": "^6.0.0-beta.19",
+    "husky": "1.0.0-rc.2",
     "nodemon": "^1.17.3",
+    "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   },
-  "author": "Martin Fink",
-  "license": "UNLICENSED"
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  }
 }

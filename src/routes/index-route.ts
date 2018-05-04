@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { BaseRoute } from "./route";
+import { NextFunction, Request, Response, Router } from 'express';
+import { BaseRoute } from './route';
 
 
 /**
@@ -17,8 +17,8 @@ export class IndexRoute extends BaseRoute {
      * @static
      */
     public static create(router: Router) {
-        router.get("/", (req: Request, res: Response, next: NextFunction) => {
-            new IndexRoute("Index", []).index(req, res, next);
+        router.get('/', (req: Request, res: Response, next: NextFunction) => {
+            new IndexRoute('Index', []).index(req, res, next);
         });
     }
 
@@ -27,7 +27,7 @@ export class IndexRoute extends BaseRoute {
     }
 
     public index(req: Request, res: Response, next: NextFunction) {
-        //render template
-        this.render(req, res, "index");
+        // render template
+        this.render(req, res, 'index');
     }
 }
