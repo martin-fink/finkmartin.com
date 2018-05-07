@@ -54,7 +54,7 @@ deploy_aws:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
   script:
-    - commands="set -x && cd /home/docker/Container && git fetch && git reset --hard && git pull && bash -x ci-install.sh"
+    - commands="set -x && cd /home/ubuntu/Container && git fetch && git reset --hard && git pull && bash -x ci-install.sh"
     - ssh ubuntu@${SERVER_URL} ${commands}
 
   allow_failure: false
