@@ -1,0 +1,79 @@
+# Needed for docker build step
+image: docker:latest
+
+variables:
+  DOCKER_DRIVER: overlay
+  DOCKER_IMAGE_NAME: docker.finkmartin.com/homepage:latest
+  DOCKER_REGISTRY_ECR: 768687622477.dkr.ecr.eu-central-1.amazonaws.com
+  DOCKER_REGISTRY_URL: docker.finkmartin.com
+
+stages:
+  - build
+  - deploy
+  - check
+
+build_image:
+  stage: build
+
+  image: docker:git
+  services:
+      - docker:dind
+
+  only:
+    - master
+
+  before_script:
+    - apk add --no-cache curl jq python py-pip
+    - pip install awscli
+
+  script:
+    - command=`aws ecr get-login --no-include-email --region eu-central-1`
+    - replaced=`echo $command | sed "s/$DOCKER_REGISTRY_ECR/$DOCKER_REGISTRY_URL/"`
+    - echo $replaced
+    - eval "$replaced"
+    - docker build -t $DOCKER_IMAGE_NAME .
+    - docker push $DOCKER_IMAGE_NAME
+
+  when: always
+
+  allow_failure: false
+
+deploy_aws:
+  stage: deploy
+  image: ruby:2.1
+
+  only:
+    - master
+
+  before_script:
+    # Generate SSH key
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+  script:
+    - commands="set -x && cd /home/docker/Container && git fetch && git reset --hard && git pull && bash -x ci-install.sh"
+    - ssh ubuntu@${SERVER_URL} ${commands}
+
+  allow_failure: false
+
+  variables:
+    GIT_STRATEGY: none
+
+check_deployment:
+  stage: check
+  image: ruby:2.1
+
+  only:
+    - master
+
+  script:
+    - curl -s -f https://finkmartin.com > /dev/null
+
+  allow_failure: false
+
+  when: on_success
+
+  variables:
+    GIT_STRATEGY: none

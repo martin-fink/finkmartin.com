@@ -1,9 +1,9 @@
 version: "3.3"
 
 services:
-  finkmartin-website:
-    hostname: finkmartin-website
-    container_name: finkmartin-website
+  homepage:
+    hostname: homepage
+    container_name: homepage
     build: .
     restart: always
     ports:
