@@ -5,12 +5,12 @@ module.exports = function (grunt) {
         copy: {
             build: {
                 files: [
-                    {
-                        expand: true,
-                        cwd: "./src/views",
-                        src: ["**"],
-                        dest: "./dist/views",
-                    },
+                    // {
+                    //     expand: true,
+                    //     cwd: "./src/views",
+                    //     src: ["**"],
+                    //     dest: "./dist/views",
+                    // },
                 ],
             },
         },
@@ -38,24 +38,31 @@ module.exports = function (grunt) {
                 tasks: ["copy"],
             },
         },
-        ejs: {
-            all: {
-                src: ['src/views/*.ejs'],
-                expand: true,
-                ext: '.ejs',
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/views',
+                    src: ['**.ejs', '*.ejs'],
+                    dest: 'dist/views'
+                }]
             },
-        },
+        }
     });
 
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-ts");
-    grunt.loadNpmTasks("grunt-ejs");
+    grunt.loadNpmTasks("grunt-contrib-htmlmin");
 
     grunt.registerTask("default", [
-        "ts",
-        "ejs",
         "copy",
+        "ts",
+        "htmlmin",
     ]);
 
 };
