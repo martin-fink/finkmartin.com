@@ -6,10 +6,14 @@ EXPOSE 10000
 
 WORKDIR /app
 
-COPY . /app
+COPY package.json /app
+COPY yarn.lock /app
 
 RUN yarn
 
+COPY src/ /app/src
+COPY gruntfile.js /app
+
 RUN yarn grunt
 
-CMD ["node", "app.js"]
+CMD ["node", "dist/app.js"]

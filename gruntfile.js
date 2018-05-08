@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     "use strict";
 
     grunt.initConfig({
@@ -7,52 +7,55 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: "./public",
+                        cwd: "./src/views",
                         src: ["**"],
-                        dest: "./dist/public"
+                        dest: "./dist/views",
                     },
-                    {
-                        expand: true,
-                        cwd: "./views",
-                        src: ["**"],
-                        dest: "./dist/views"
-                    }
-                ]
-            }
+                ],
+            },
         },
         ts: {
             app: {
                 files: [{
                     src: ["src/\*\*/\*.ts", "!src/.baseDir.ts"],
-                    dest: "./dist"
+                    dest: "./dist",
                 }],
                 options: {
                     module: "commonjs",
                     target: "es6",
                     sourceMap: false,
-                    rootDir: "src"
-                }
-            }
+                    rootDir: "src",
+                },
+            },
         },
         watch: {
             ts: {
                 files: ["src/\*\*/\*.ts"],
-                tasks: ["ts"]
+                tasks: ["ts"],
             },
             views: {
                 files: ["views/**/*.pug"],
-                tasks: ["copy"]
-            }
-        }
+                tasks: ["copy"],
+            },
+        },
+        ejs: {
+            all: {
+                src: ['src/views/*.ejs'],
+                expand: true,
+                ext: '.ejs',
+            },
+        },
     });
 
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-ts");
+    grunt.loadNpmTasks("grunt-ejs");
 
     grunt.registerTask("default", [
+        "ts",
+        "ejs",
         "copy",
-        "ts"
     ]);
 
 };

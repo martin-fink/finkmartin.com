@@ -1,26 +1,27 @@
-"use strict";
+'use strict';
 
-//module dependencies
-const server = require("./dist/server");
-const debug = require("debug")("express:server");
-const http = require("http");
+// module dependencies
+const server = require('./server');
+const debug = require('debug')('express:server');
+const http = require('http');
 
-//create http server
+// create http server
 const httpPort = normalizePort(process.env.PORT || 10000);
 let app = server.Server.bootstrap().app;
-app.set("port", httpPort);
+app.set('port', httpPort);
 const httpServer = http.createServer(app);
 
+// noinspection TsLint
 console.log(`Server started on port ${httpPort}`);
 
-//listen on provided ports
+// listen on provided ports
 httpServer.listen(httpPort);
 
-//add error handler
-httpServer.on("error", onError);
+// add error handler
+httpServer.on('error', onError);
 
-//start listening on port
-httpServer.on("listening", onListening);
+// start listening on port
+httpServer.on('listening', onListening);
 
 
 /**
@@ -46,22 +47,18 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 function onError(error) {
-    if (error.syscall !== "listen") {
+    if (error.syscall !== 'listen') {
         throw error;
     }
 
-    const bind = typeof port === "string"
-        ? "Pipe " + port
-        : "Port " + port;
-
     // handle specific listen errors with friendly messages
     switch (error.code) {
-        case "EACCES":
-            console.error(bind + " requires elevated privileges");
+        case 'EACCES':
+            console.error('Port requires elevated privileges');
             process.exit(1);
             break;
-        case "EADDRINUSE":
-            console.error(bind + " is already in use");
+        case 'EADDRINUSE':
+            console.error('Port is already in use');
             process.exit(1);
             break;
         default:
@@ -74,8 +71,5 @@ function onError(error) {
  */
 function onListening() {
     const addr = httpServer.address();
-    const bind = typeof addr === "string"
-        ? "pipe " + addr
-        : "port " + addr.port;
-    debug("Listening on " + bind);
+    debug(`Listening on port ${addr.port}`);
 }

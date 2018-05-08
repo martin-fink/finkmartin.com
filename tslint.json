@@ -110,5 +110,10 @@
       }
     ],
     "no-unused-variable": [true, {"ignore-pattern": "^_"}]
+  },
+  "linterOptions": {
+    "exclude": [
+      "src/app.ts"
+    ]
   }
 }
