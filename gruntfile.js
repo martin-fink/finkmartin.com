@@ -25,6 +25,8 @@ module.exports = function (grunt) {
                     target: "es6",
                     sourceMap: false,
                     rootDir: "src",
+                    minifyJs: true,
+                    removeComments: true,
                 },
             },
         },
