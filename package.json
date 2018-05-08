@@ -4,9 +4,8 @@
   "author": "Martin Fink",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app.js",
     "grunt": "grunt",
-    "start": "node app.js",
+    "start": "yarn grunt && node dist/app.js",
     "lint": "yarn tslint -p .",
     "lint:fix": "yarn tslint -p . --fix"
   },
