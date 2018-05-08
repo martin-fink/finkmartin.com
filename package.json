@@ -4,10 +4,11 @@
   "author": "Martin Fink",
   "license": "UNLICENSED",
   "scripts": {
-    "grunt": "grunt",
-    "start": "yarn grunt && node dist/app.js",
+    "build": "grunt",
+    "start": "yarn build && node dist/app.js",
     "lint": "yarn tslint -p .",
-    "lint:fix": "yarn tslint -p . --fix"
+    "lint:fix": "yarn tslint -p . --fix",
+    "clear-cache": "rm -rf dist .tscache .sass-cache"
   },
   "dependencies": {
     "@types/body-parser": "^1.17.0",
@@ -17,17 +18,21 @@
     "@types/method-override": "^0.0.31",
     "@types/morgan": "^1.7.35",
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.1.1",
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.9",
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
+    "ionicons": "^3.0.0",
     "method-override": "^2.3.10",
+    "moment": "^2.22.1",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
     "grunt": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-htmlmin": "^2.4.0",
+    "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.1",
     "grunt-ts": "^6.0.0-beta.19",
     "husky": "1.0.0-rc.2",

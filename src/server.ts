@@ -3,9 +3,10 @@ import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as path from 'path';
+import * as moment from 'moment';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
-import {IndexRoute} from './routes';
+import {Request, Response} from 'express';
 
 export class Server {
 
@@ -28,9 +29,6 @@ export class Server {
     }
 
     public configure() {
-        // add static paths
-        this.app.use(express.static(path.join(__dirname, 'public')));
-
         // configure pug
         this.app.set('views', path.join(__dirname, 'views'));
         this.app.set('view engine', 'ejs');
@@ -50,7 +48,7 @@ export class Server {
 
         this.app.use(methodOverride());
 
-        this.app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
+        this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
             err.status = 404;
             next(err);
         });
@@ -60,9 +58,22 @@ export class Server {
     }
 
     public routes() {
+        // add static paths
+        this.app.use('/css', express.static(__dirname + '/css'));
+        this.app.use('/fonts', express.static(__dirname + '/fonts'));
+
+        // configure user routes
         const router = express.Router();
 
-        IndexRoute.create(router);
+        router.get('/', (req: Request, res: Response) => {
+            res.render('index', {
+                age: moment().diff('1999-03-18', 'years'),
+            });
+        });
+
+        router.get('*', (req: Request, res: Response) => {
+            res.redirect('/');
+        });
 
         this.app.use(router);
     }

@@ -5,12 +5,12 @@ module.exports = function (grunt) {
         copy: {
             build: {
                 files: [
-                    // {
-                    //     expand: true,
-                    //     cwd: "./src/views",
-                    //     src: ["**"],
-                    //     dest: "./dist/views",
-                    // },
+                    {
+                        expand: true,
+                        cwd: 'node_modules/ionicons/dist/fonts',
+                        src: ["*"],
+                        dest: "./dist/fonts/",
+                    },
                 ],
             },
         },
@@ -44,27 +44,39 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     removeComments: true,
-                    collapseWhitespace: true
+                    collapseWhitespace: true,
                 },
                 files: [{
                     expand: true,
                     cwd: 'src/views',
-                    src: ['**.ejs', '*.ejs'],
-                    dest: 'dist/views'
-                }]
+                    src: ['**/*.ejs', '*.ejs'],
+                    dest: 'dist/views',
+                }],
             },
-        }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'compressed',
+                    sourcemap: 'none',
+                },
+                files: {
+                    'dist/css/main.css': 'src/styles/main.scss',
+                },
+            },
+        },
     });
 
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-contrib-htmlmin");
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     grunt.registerTask("default", [
         "copy",
         "ts",
         "htmlmin",
+        "sass",
     ]);
-
 };
