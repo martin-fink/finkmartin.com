@@ -13,6 +13,12 @@ module.exports = function (grunt) {
                         src: ["*"],
                         dest: "./dist/fonts/",
                     },
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ["static/*"],
+                        dest: "./dist/",
+                    },
                 ],
             },
         },
