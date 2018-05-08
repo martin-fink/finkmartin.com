@@ -14,6 +14,6 @@ RUN yarn
 COPY src/ /app/src
 COPY gruntfile.js /app
 
-RUN yarn grunt
+RUN yarn build
 
 CMD ["node", "dist/app.js"]
