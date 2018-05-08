@@ -24,9 +24,11 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
     "ionicons": "^3.0.0",
+    "jquery": "^3.3.1",
     "method-override": "^2.3.10",
     "moment": "^2.22.1",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "popper.js": "^1.14.3"
   },
   "devDependencies": {
     "grunt": "^1.0.2",
