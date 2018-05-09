@@ -96,5 +96,6 @@ module.exports = function (grunt) {
         "ts",
         "htmlmin",
         "sass",
+        "purifycss",
     ]);
 };
