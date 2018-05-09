@@ -73,12 +73,23 @@ module.exports = function (grunt) {
                 },
             },
         },
+        purifycss: {
+            options: {
+                minify: true,
+            },
+            target: {
+                src: ['dist/views/**/*.ejs'],
+                css: ['dist/css/main.css'],
+                dest: 'dist/css/purestyles.css'
+            },
+        },
     });
 
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-contrib-htmlmin");
+    grunt.loadNpmTasks('grunt-purifycss');
 
     grunt.registerTask("default", [
         "copy",
