@@ -10,12 +10,18 @@ p {
   font-size: 1.25rem;
 }
 
-.text-shadow {
+a:hover, a:hover div * {
+  color: #e74c3c;
   text-shadow: 5px 5px 10px #212529;
 }
 
-a:hover, a:hover * {
-  color: #e74c3c;
+a, a:hover, a div *, a:hover div * {
+  transition: color .25s, text-shadow .25s;
+}
+
+// No transitions on preload
+.preload {
+  transition: none;
 }
 
 .footer {

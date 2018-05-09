@@ -1,5 +1,5 @@
 module.exports = function (grunt) {
-    "use strict";
+    'use strict';
 
     require('load-grunt-tasks')(grunt);
 
@@ -10,14 +10,14 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'node_modules/ionicons/dist/fonts',
-                        src: ["*"],
-                        dest: "./dist/fonts/",
+                        src: ['*'],
+                        dest: './dist/fonts/',
                     },
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ["static/*"],
-                        dest: "./dist/",
+                        src: ['static/*'],
+                        dest: './dist/',
                     },
                 ],
             },
@@ -25,14 +25,14 @@ module.exports = function (grunt) {
         ts: {
             app: {
                 files: [{
-                    src: ["src/\*\*/\*.ts", "!src/.baseDir.ts"],
-                    dest: "./dist",
+                    src: ['src/\*\*/\*.ts', '!src/.baseDir.ts'],
+                    dest: './dist',
                 }],
                 options: {
-                    module: "commonjs",
-                    target: "es6",
+                    module: 'commonjs',
+                    target: 'es6',
                     sourceMap: false,
-                    rootDir: "src",
+                    rootDir: 'src',
                     minifyJs: true,
                     removeComments: true,
                 },
@@ -40,12 +40,12 @@ module.exports = function (grunt) {
         },
         watch: {
             ts: {
-                files: ["src/\*\*/\*.ts"],
-                tasks: ["ts"],
+                files: ['src/\*\*/\*.ts'],
+                tasks: ['ts'],
             },
             views: {
-                files: ["views/**/*.pug"],
-                tasks: ["copy"],
+                files: ['views/**/*.pug'],
+                tasks: ['copy'],
             },
         },
         htmlmin: {
@@ -85,17 +85,17 @@ module.exports = function (grunt) {
         },
     });
 
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks("grunt-ts");
-    grunt.loadNpmTasks("grunt-contrib-htmlmin");
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-ts');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-purifycss');
 
-    grunt.registerTask("default", [
-        "copy",
-        "ts",
-        "htmlmin",
-        "sass",
-        "purifycss",
+    grunt.registerTask('default', [
+        'copy',
+        'ts',
+        'htmlmin',
+        'sass',
+        'purifycss',
     ]);
 };
