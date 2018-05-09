@@ -80,7 +80,7 @@ module.exports = function (grunt) {
             target: {
                 src: ['dist/views/**/*.ejs'],
                 css: ['dist/css/main.css'],
-                dest: 'dist/css/purestyles.css'
+                dest: 'dist/css/main.css'
             },
         },
     });
