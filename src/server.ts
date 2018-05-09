@@ -61,6 +61,7 @@ export class Server {
         // add static paths
         this.app.use('/', express.static(__dirname + '/static'));
         this.app.use('/styles', express.static(__dirname + '/styles'));
+        this.app.use('/scripts', express.static(__dirname + '/scripts'));
         this.app.use('/fonts', express.static(__dirname + '/fonts'));
 
         // configure user routes

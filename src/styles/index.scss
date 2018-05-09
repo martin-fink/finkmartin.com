@@ -21,7 +21,7 @@ a, a:hover, a div *, a:hover div * {
 
 // No transitions on preload
 .preload {
-  transition: none;
+  transition: none !important;
 }
 
 .footer {

@@ -83,6 +83,21 @@ module.exports = function (grunt) {
                 dest: 'dist/styles/main.css',
             },
         },
+        uglify: {
+            bundle: {
+                options: {
+                    mangle: {
+                        reserved: ['JQuery'],
+                    },
+                    output: {
+                        comments: 'some',
+                    },
+                },
+                files: {
+                    'dist/scripts/bundle.js': ['node_modules/jquery/dist/jquery.js', 'src/scripts/*.js']
+                }
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -90,6 +105,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-purifycss');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', [
         'copy',
@@ -97,5 +113,6 @@ module.exports = function (grunt) {
         'htmlmin',
         'sass',
         'purifycss',
+        'uglify',
     ]);
 };
