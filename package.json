@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "author": "Martin Fink",
   "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "build": "grunt",
     "start": "yarn build && node dist/app.js",

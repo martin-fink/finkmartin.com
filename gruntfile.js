@@ -69,7 +69,7 @@ module.exports = function (grunt) {
                     sourcemap: 'none',
                 },
                 files: {
-                    'dist/css/main.css': 'src/styles/main.scss',
+                    'dist/styles/main.css': 'src/styles/main.scss',
                 },
             },
         },
@@ -79,8 +79,8 @@ module.exports = function (grunt) {
             },
             target: {
                 src: ['dist/views/**/*.ejs'],
-                css: ['dist/css/main.css'],
-                dest: 'dist/css/main.css'
+                css: ['dist/styles/main.css'],
+                dest: 'dist/styles/main.css',
             },
         },
     });

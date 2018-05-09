@@ -60,7 +60,7 @@ export class Server {
     public routes() {
         // add static paths
         this.app.use('/', express.static(__dirname + '/static'));
-        this.app.use('/css', express.static(__dirname + '/css'));
+        this.app.use('/styles', express.static(__dirname + '/styles'));
         this.app.use('/fonts', express.static(__dirname + '/fonts'));
 
         // configure user routes
