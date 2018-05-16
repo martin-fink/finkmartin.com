@@ -94,10 +94,10 @@ module.exports = function (grunt) {
                     },
                 },
                 files: {
-                    'dist/scripts/bundle.js': ['node_modules/jquery/dist/jquery.js', 'src/scripts/*.js']
-                }
-            }
-        }
+                    'dist/scripts/bundle.js': ['node_modules/jquery/dist/jquery.js', 'src/scripts/*.js'],
+                },
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
