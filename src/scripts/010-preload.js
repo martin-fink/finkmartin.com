@@ -1,5 +1,5 @@
 'use strict';
 
-$(document).ready(function () {
+$(document).ready(() => {
     $('body').removeClass('preload');
 });

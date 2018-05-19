@@ -94,7 +94,10 @@ module.exports = function (grunt) {
                     },
                 },
                 files: {
-                    'dist/scripts/bundle.js': ['node_modules/jquery/dist/jquery.js', 'src/scripts/*.js'],
+                    'dist/scripts/bundle.js': [
+                        'node_modules/jquery/dist/jquery.js',
+                        'src/scripts/*.js',
+                    ],
                 },
             },
         },
@@ -105,7 +108,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-purifycss');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
 
     grunt.registerTask('default', [
         'copy',
