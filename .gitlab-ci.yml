@@ -4,7 +4,6 @@ image: docker:latest
 variables:
   DOCKER_DRIVER: overlay
   DOCKER_IMAGE_NAME: 768687622477.dkr.ecr.eu-central-1.amazonaws.com/homepage:latest
-#  DOCKER_REGISTRY_ECR: 768687622477.dkr.ecr.eu-central-1.amazonaws.com
   DOCKER_REGISTRY_URL: 768687622477.dkr.ecr.eu-central-1.amazonaws.com
 
 stages:
@@ -28,9 +27,6 @@ build_image:
 
   script:
     - command=`aws ecr get-login --no-include-email --region eu-central-1`
-#    - replaced=`echo $command | sed "s/$DOCKER_REGISTRY_ECR/$DOCKER_REGISTRY_URL/"`
-#    - echo $replaced
-#    - eval "$replaced"
     - eval "$command"
     - docker build -t $DOCKER_IMAGE_NAME .
     - docker push $DOCKER_IMAGE_NAME
