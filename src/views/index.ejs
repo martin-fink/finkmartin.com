@@ -21,6 +21,8 @@
     <meta name="author" content="Martin Fink <martin@finkmartin.com>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <meta name="language" content="<%= __('locale') %>">
+
     <title>Martin Fink</title>
 
     <% include snippets/header_links.ejs %>
@@ -34,11 +36,12 @@
 
         <div class="text-center">
             <p class="my-1">
-                My name is Martin Fink. I am a <%= age %> year old student
-                <a href="http://tfobz.it" target="_blank">@ TFO "Max Valier"</a> in Bolzano.
+                <%= __('index_introduction_1', age) %>
+                <a href="http://tfobz.it" target="_blank">@ TFO "Max Valier"</a>
+                <%= __('index_introduction_2') %>
             </p>
             <p class="my-1">
-                I am also a free-time developer.
+                <%= __('index_i_am_also_a_developer') %>
             </p>
         </div>
 
@@ -60,7 +63,7 @@
             <div class="nowrap d-inline-block mx-2"><i class="mr-2 ion ion-md-laptop"></i><span>Svilupe</span></div>
         </a>
         <a class="text-uppercase" target="_blank" href="mailto:martin@finkmartin.com">
-            <div class="nowrap d-inline-block mx-2"><i class="mr-2 ion ion-md-mail"></i><span>Contact</span></div>
+            <div class="nowrap d-inline-block mx-2"><i class="mr-2 ion ion-md-mail"></i><span><%= __('Contact') %></span></div>
         </a>
     </div>
 </div>

@@ -24,39 +24,33 @@ import * as moment from 'moment';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
 import {Request, Response} from 'express';
+import {configureI18n} from './i18n.config';
+import {__, __N} from 'i18n';
 
 export class Server {
 
     public readonly app: express.Application;
 
-    public static bootstrap(): Server {
-        return new Server();
+    public static bootstrap(port: number): Server {
+        return new Server(port);
     }
 
-    constructor() {
+    constructor(port: number) {
         this.app = express();
+        this.app.set('port', port);
 
         this.configure();
         this.routes();
-        this.api();
-    }
-
-    public api() {
-        // empty for now
     }
 
     public configure() {
-        // configure pug
         this.app.set('views', path.join(__dirname, 'views'));
         this.app.set('view engine', 'ejs');
 
-        // use logger middlware
         this.app.use(logger('dev'));
 
-        // use json form parser middlware
         this.app.use(bodyParser.json());
 
-        // use query string parser middlware
         this.app.use(bodyParser.urlencoded({
             extended: true,
         }));
@@ -70,8 +64,9 @@ export class Server {
             next(err);
         });
 
-        // error handling
         this.app.use(errorHandler());
+
+        configureI18n(this.app);
     }
 
     public routes() {
@@ -85,6 +80,7 @@ export class Server {
         const router = express.Router();
 
         router.get('/', (req: Request, res: Response) => {
+            console.log(__('asd'));
             res.render('index', {
                 age: moment().diff('1999-03-18', 'years'),
             });

@@ -36,6 +36,12 @@ module.exports = function (grunt) {
                         src: ['static/*'],
                         dest: './dist/',
                     },
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['locales/*'],
+                        dest: './dist/',
+                    }
                 ],
             },
         },

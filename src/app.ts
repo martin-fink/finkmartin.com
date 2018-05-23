@@ -15,50 +15,19 @@
  *
  */
 
-'use strict';
-
-// module dependencies
-const server = require('./server');
-const debug = require('debug')('express:server');
-const http = require('http');
+import {Server} from './server';
+import * as http from 'http';
+import {AddressInfo} from 'net';
 
 // create http server
-const httpPort = normalizePort(process.env.PORT || 10000);
-let app = server.Server.bootstrap().app;
-app.set('port', httpPort);
+const port = +process.env.PORT || 10000;
+const app = Server.bootstrap(port).app;
+
 const httpServer = http.createServer(app);
 
-// noinspection TsLint
-console.log(`Server started on port ${httpPort}`);
-
-// listen on provided ports
-httpServer.listen(httpPort);
-
-// add error handler
+httpServer.listen(port);
 httpServer.on('error', onError);
-
-// start listening on port
 httpServer.on('listening', onListening);
-
-
-/**
- * Normalize a port into a number, string, or false.
- */
-function normalizePort(val) {
-    const port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -87,6 +56,6 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 function onListening() {
-    const addr = httpServer.address();
-    debug(`Listening on port ${addr.port}`);
+    const address = httpServer.address() as AddressInfo;
+    console.log(`Listening on port ${address.port}`);
 }
