@@ -34,7 +34,7 @@ export function configureI18n(app: express.Application) {
 
         i18n.init(req, res);
         res.locals['__'] = i18n.__;
-        res.locals['__N'] = i18n.__N;
+        res.locals['__n'] = i18n.__n;
 
         return next();
     });
