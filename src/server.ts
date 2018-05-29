@@ -80,7 +80,6 @@ export class Server {
         const router = express.Router();
 
         router.get('/', (req: Request, res: Response) => {
-            console.log(__('asd'));
             res.render('index', {
                 age: moment().diff('1999-03-18', 'years'),
             });

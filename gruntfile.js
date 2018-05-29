@@ -63,13 +63,21 @@ module.exports = function (grunt) {
         },
         watch: {
             ts: {
-                files: ['src/\*\*/\*.ts'],
+                files: ['src/**/*.ts'],
                 tasks: ['ts'],
             },
-            views: {
-                files: ['views/**/*.pug'],
+            statics: {
+                files: ['src/locales/**/*', 'src/static/**/*'],
                 tasks: ['copy'],
             },
+            styles: {
+                files: ['src/styles/**/*.scss'],
+                tasks: ['sass'],
+            },
+            views: {
+                files: ['src/views/**/*.ejs'],
+                tasks: ['htmlmin'],
+            }
         },
         htmlmin: {
             dist: {
@@ -139,6 +147,14 @@ module.exports = function (grunt) {
         'htmlmin',
         'sass',
         'purifycss',
+        'uglify',
+    ]);
+
+    grunt.registerTask('dev', [
+        'copy',
+        'ts',
+        'htmlmin',
+        'sass',
         'uglify',
     ]);
 };

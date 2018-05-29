@@ -9,6 +9,7 @@
     "start": "yarn build && node dist/app.js",
     "lint": "yarn tslint -p .",
     "lint:fix": "yarn tslint -p . --fix",
+    "dev": "yarn grunt dev && concurrently \"nodemon dist/app.js\" \"yarn grunt watch\"",
     "clear-cache": "rm -rf dist .tscache .sass-cache"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "sitemap-generator": "^8.1.1"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "grunt": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-htmlmin": "^2.4.0",
