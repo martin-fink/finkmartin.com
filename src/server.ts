@@ -25,7 +25,6 @@ import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
 import {Request, Response} from 'express';
 import {configureI18n} from './i18n.config';
-import {__, __N} from 'i18n';
 
 export class Server {
 
