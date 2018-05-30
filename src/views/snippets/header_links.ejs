@@ -22,7 +22,11 @@
 
 <meta name="language" content="<%= __('locale') %>">
 
-<link href="/styles/<%= filename.replace(/^.*[\\\/](.*)\.(?:.*)/, '$1.css') %>" rel="stylesheet">
+<% if (filename) { %>
+    <link href="/styles/<%= filename.replace(/^.*[\\\/](.*)\.(?:.*)/, '$1.css') %>" rel="stylesheet">
+<% } else {
+    console.log(`Warning: No stylesheet available. Did you set 'filename' before including ${__filename}?`);
+} %>
 <script src="/scripts/bundle.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
