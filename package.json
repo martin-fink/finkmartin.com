@@ -2,15 +2,17 @@
   "name": "website",
   "version": "0.1.0",
   "author": "Martin Fink",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "build": "grunt",
     "start": "yarn build && node dist/app.js",
-    "lint": "yarn tslint -p .",
-    "lint:fix": "yarn tslint -p . --fix",
-    "dev": "yarn grunt dev && concurrently \"nodemon dist/app.js\" \"yarn grunt watch\"",
-    "clear-cache": "rm -rf dist .tscache .sass-cache"
+    "lint": "tslint -p .",
+    "lint:fix": "tslint -p . --fix",
+    "watch": "concurrently \"nodemon dist/app.js\" \"yarn grunt watch\"",
+    "dev": "grunt dev && yarn watch",
+    "clean:cache": "rm -rf .tscache",
+    "clean": "yarn clean:cache && rm -rf dist"
   },
   "dependencies": {
     "@types/body-parser": "^1.17.0",
