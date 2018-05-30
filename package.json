@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "author": "Martin Fink",
   "license": "Apache-2.0",
+  "homepage": "https://finkmartin.com",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/martin-fink/finkmartin-website.git"
+  },
   "private": true,
   "scripts": {
     "build": "grunt",
