@@ -89,7 +89,7 @@ export class Server {
         });
 
         router.get('*', (req: Request, res: Response) => {
-            res.redirect('/');
+            res.status(404);
         });
 
         this.app.use(router);
