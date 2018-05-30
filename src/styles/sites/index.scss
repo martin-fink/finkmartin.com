@@ -1,4 +1,4 @@
-/*
+/*!
  *    Copyright 2018 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +15,14 @@
  *
  */
 
+@import "../main";
+
 body {
   background-color: #34495e;
 }
 
 html * {
   color: #f8f9fa;
-}
-
-p {
-  font-size: 1.25rem;
 }
 
 a:hover, a:hover div * {

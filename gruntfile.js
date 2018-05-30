@@ -18,7 +18,27 @@
 module.exports = function (grunt) {
     'use strict';
 
-    require('load-grunt-tasks')(grunt);
+    grunt.registerMultiTask('purifycss', 'Clean unnecessary CSS', function () {
+        const purify = require('purify-css');
+        const glob = require('glob');
+
+        // Merge task-specific and/or target-specific options with these defaults.
+        const options = this.options({write: false, info: true});
+
+        this.files.forEach(file => {
+
+            const css = [];
+            file.css.forEach(pattern => {
+                css.push(...glob.sync(pattern));
+            });
+
+            css.forEach(cssFile => {
+                const pure = purify(file.src, [cssFile], options);
+
+                grunt.file.write(cssFile, pure);
+            });
+        })
+    });
 
     grunt.initConfig({
         copy: {
@@ -99,19 +119,22 @@ module.exports = function (grunt) {
                     style: 'compressed',
                     sourcemap: 'none',
                 },
-                files: {
-                    'dist/styles/main.css': 'src/styles/main.scss',
-                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/styles/sites',
+                    src: ['*.scss'],
+                    dest: 'dist/styles',
+                    rename: function (dest, src) {
+                        return `${dest}/${src.replace(/\.scss$/, ".css")}`;
+                    }
+                }],
             },
         },
         purifycss: {
-            options: {
-                minify: true,
-            },
-            target: {
+            dist: {
                 src: ['dist/views/**/*.ejs'],
-                css: ['dist/styles/main.css'],
-                dest: 'dist/styles/main.css',
+                css: ['dist/styles/*.css'],
+                dest: 'dist/styles',
             },
         },
         uglify: {
@@ -138,8 +161,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
-    grunt.loadNpmTasks('grunt-purifycss');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
+    grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('default', [
         'copy',

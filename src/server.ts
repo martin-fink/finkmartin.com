@@ -83,6 +83,9 @@ export class Server {
                 age: moment().diff('1999-03-18', 'years'),
             });
         });
+        router.get('/curriculum', (req: Request, res: Response) => {
+            res.render('curriculum');
+        });
 
         router.get('*', (req: Request, res: Response) => {
             res.redirect('/');
