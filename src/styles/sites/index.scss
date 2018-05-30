@@ -34,11 +34,6 @@ a, a:hover, a div *, a:hover div * {
   transition: color .25s, text-shadow .25s;
 }
 
-// No transitions on preload
-.preload {
-  transition: none !important;
-}
-
 .footer {
   position: fixed;
   bottom: 0;

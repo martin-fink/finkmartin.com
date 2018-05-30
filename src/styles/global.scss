@@ -27,3 +27,8 @@ p {
 html * {
   font-family: 'Montserrat', sans-serif;
 }
+
+// No transitions on preload
+.preload {
+  transition: none !important;
+}
