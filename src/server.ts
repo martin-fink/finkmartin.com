@@ -89,7 +89,7 @@ export class Server {
         });
 
         router.get('*', (req: Request, res: Response) => {
-            res.status(404);
+            res.status(404).json({error: 404, message: 'Not Found'});
         });
 
         this.app.use(router);
