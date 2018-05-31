@@ -160,16 +160,6 @@ module.exports = function (grunt) {
                 },
             },
         },
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: 'dist/static/images',
-                    src: ['**/*.{jpg,jpeg,png}'],
-                    dest: 'dist/static/images',
-                }],
-            },
-        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -178,7 +168,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     grunt.registerTask('default', [
         'copy',
@@ -187,7 +176,6 @@ module.exports = function (grunt) {
         'sass',
         'purifycss',
         'uglify',
-        'imagemin',
     ]);
 
     grunt.registerTask('dev', [
