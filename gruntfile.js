@@ -94,6 +94,10 @@ module.exports = function (grunt) {
                 files: ['src/styles/**/*.scss'],
                 tasks: ['sass'],
             },
+            scripts: {
+                files: ['src/scripts/**/*.js'],
+                tasks: ['uglify'],
+            },
             views: {
                 files: ['src/views/**/*.ejs'],
                 tasks: ['htmlmin'],
@@ -149,6 +153,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dist/scripts/bundle.js': [
+                        'node_modules/particles.js/particles.js',
                         'node_modules/jquery/dist/jquery.js',
                         'src/scripts/*.js',
                     ],

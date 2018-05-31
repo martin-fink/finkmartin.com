@@ -38,6 +38,7 @@
     "method-override": "^2.3.10",
     "moment": "^2.22.1",
     "morgan": "^1.9.0",
+    "particles.js": "^2.0.0",
     "popper.js": "^1.14.3",
     "sitemap-generator": "^8.1.1"
   },

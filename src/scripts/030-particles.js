@@ -1,4 +1,4 @@
-/*!
+/*
  *    Copyright 2018 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,39 +15,10 @@
  *
  */
 
-@import "../main";
+'use strict';
 
-body {
-  background-color: #34495e;
-}
-
-html * {
-  color: #f8f9fa;
-}
-
-a:hover, a:hover div * {
-  color: #e74c3c;
-  text-shadow: 5px 5px 10px #212529;
-}
-
-a, a:hover, a div *, a:hover div * {
-  transition: color .25s, text-shadow .25s;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-#particles-js {
-  position: fixed;
-  z-index: -10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+$(document).ready(() => {
+    particlesJS.load('particles-js', '/static/conf/particles.json', function() {
+        console.log('callback - particles-js config loaded');
+    });
+});
