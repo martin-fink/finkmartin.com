@@ -15,10 +15,12 @@
  *
  */
 
+// colors from https://flatuicolors.com/palette/au
+
 @import "../main";
 
 body {
-  background-color: #34495e;
+  background-color: #130f40;
 }
 
 html * {
@@ -26,7 +28,7 @@ html * {
 }
 
 a:hover, a:hover div * {
-  color: #e74c3c;
+  color: #eb4d4b;
   text-shadow: 5px 5px 10px #212529;
 }
 
