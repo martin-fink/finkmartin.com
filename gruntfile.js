@@ -23,7 +23,7 @@ module.exports = function (grunt) {
         const glob = require('glob');
 
         // Merge task-specific and/or target-specific options with these defaults.
-        const options = this.options({write: false, info: true});
+        const options = this.options({write: false, info: true, minify: true});
 
         this.files.forEach(file => {
 
