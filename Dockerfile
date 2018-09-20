@@ -6,7 +6,7 @@ EXPOSE 10000
 
 WORKDIR /app
 
-COPY package.json yarn.lock .
+COPY package.json yarn.lock /app/
 
 RUN yarn --frozen-lockfile
 
