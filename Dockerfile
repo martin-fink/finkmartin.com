@@ -2,8 +2,6 @@ FROM node:9-alpine as stage-build
 
 LABEL maintainer="martin@finkmartin.com"
 
-EXPOSE 10000
-
 WORKDIR /app
 
 COPY package.json yarn.lock /app/
@@ -22,5 +20,7 @@ FROM node:9-alpine
 WORKDIR /app
 
 COPY --from=stage-build /app/dist /app/node_modules /app/
+
+EXPOSE 10000
 
 CMD ["node", "dist/app.js"]
