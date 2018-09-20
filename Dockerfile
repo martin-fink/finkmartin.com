@@ -21,6 +21,6 @@ FROM node:9-alpine
 
 WORKDIR /app
 
-COPY --from=stage-build /app/dist /app/node_modules . 
+COPY --from=stage-build /app/dist /app/node_modules /app/
 
 CMD ["node", "dist/app.js"]
