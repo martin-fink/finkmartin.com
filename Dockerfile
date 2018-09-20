@@ -19,7 +19,8 @@ FROM node:9-alpine
 
 WORKDIR /app
 
-COPY --from=stage-build /app/dist /app/node_modules /app/
+COPY --from=stage-build /app/dist /app/node_modules /app/dist/
+COPY --from=stage-build /app/node_modules /app/node_modules/
 
 EXPOSE 10000
 

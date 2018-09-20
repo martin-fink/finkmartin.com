@@ -1,0 +1,8 @@
+.dockerignore
+.gitignore
+node_modules
+.gitlab-ci.yml
+crawler
+docker-compose.yml
+Dockerfile
+LICENSE
