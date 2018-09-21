@@ -40,3 +40,13 @@ deploy:
   script:
   - commands="cd /home/ubuntu/Container && git reset --hard && git pull && bash ci-install.sh"
   - ssh ubuntu@${SERVER_URL} ${commands}
+
+check:
+  stage: check
+  image: ruby:2.1
+
+  only:
+  - tags
+
+  script:
+  - curl -s -f https://finkmartin.com > /dev/null
