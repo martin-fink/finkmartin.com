@@ -1,76 +1,42 @@
-# Needed for docker build step
-image: docker:latest
+image: docker:stable
+
+services:
+- docker:dind
 
 variables:
-  DOCKER_DRIVER: overlay
-  DOCKER_IMAGE_NAME: 768687622477.dkr.ecr.eu-central-1.amazonaws.com/homepage:latest
-  DOCKER_REGISTRY_URL: 768687622477.dkr.ecr.eu-central-1.amazonaws.com
+  CONTAINER_IMAGE: registry.gitlab.com/martin-fink/finkmartin-website
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
 
-stages:
-  - build
-  - deploy
-  - check
+before_script:
+- docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
 
-build_image:
+
+build:
   stage: build
-
-  image: docker:git
-  services:
-      - docker:dind
-
   only:
-    - tags
-
-  before_script:
-    - apk add --no-cache curl jq python py-pip
-    - pip install awscli
-
+  - tags
   script:
-    - command=`aws ecr get-login --no-include-email --region eu-central-1`
-    - eval "$command"
-    - docker build -t $DOCKER_IMAGE_NAME .
-    - docker push $DOCKER_IMAGE_NAME
+  - docker pull $CONTAINER_IMAGE:latest || true
+  - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_REF_NAME --tag $CONTAINER_IMAGE:latest .
+  - docker push $CONTAINER_IMAGE:$CI_COMMIT_REF_NAME
+  - docker push $CONTAINER_IMAGE:latest
 
-  when: always
 
-  allow_failure: false
-
-deploy_aws:
+deploy:
   stage: deploy
   image: ruby:2.1
 
   only:
-    - tags
+  - tags
 
   before_script:
-    # Generate SSH key
-    - mkdir -p ~/.ssh
-    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  # Generate SSH key
+  - mkdir -p ~/.ssh
+  - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
   script:
-    - commands="set -x && cd /home/ubuntu/Container && git fetch && git reset --hard && git pull && bash -x ci-install.sh"
-    - ssh ubuntu@${SERVER_URL} ${commands}
-
-  allow_failure: false
-
-  variables:
-    GIT_STRATEGY: none
-
-check_deployment:
-  stage: check
-  image: ruby:2.1
-
-  only:
-    - tags
-
-  script:
-    - curl -s -f https://finkmartin.com > /dev/null
-
-  allow_failure: false
-
-  when: on_success
-
-  variables:
-    GIT_STRATEGY: none
+  - commands="cd /home/ubuntu/Container && git reset --hard && git pull && bash ci-install.sh"
+  - ssh ubuntu@${SERVER_URL} ${commands}
