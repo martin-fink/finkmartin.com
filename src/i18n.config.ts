@@ -20,7 +20,7 @@ import * as express from 'express';
 
 export function configureI18n(app: express.Application) {
     i18n.configure({
-        locales: ['en', 'de'],
+        locales: ['en'],
         defaultLocale: 'en',
         queryParameter: 'lang',
         directory: __dirname + '/locales',
