@@ -5,6 +5,5 @@ services:
     hostname: homepage
     container_name: homepage
     build: .
-    restart: always
     ports:
       - 10000:10000
