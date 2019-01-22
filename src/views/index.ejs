@@ -24,7 +24,9 @@
     <% include snippets/header_links.ejs %>
 </head>
 
-<style>*{color: #f8f9fa;}</style>
+<style>* {
+        color: #f8f9fa;
+    }</style>
 
 <body class="preload">
 <div class="vertical-center">
@@ -59,10 +61,10 @@
             <div class="nowrap d-inline-block mx-2"><i class="mr-2 ion ion-md-git-branch"></i><span>Gitlab</span>
             </div>
         </a>
-        <a class="text-uppercase" target="_blank" href="mailto:martin@finkmartin.com">
-            <div class="nowrap d-inline-block mx-2"><i
-                        class="mr-2 ion ion-md-mail"></i><span><%= __('Contact') %></span></div>
-        </a>
+
+        <div class="nowrap d-inline-block mx-2">
+            <i class="mr-2 ion ion-md-mail"></i><img id="email" src="/static/images/email.png">
+        </div>
     </div>
 </div>
 
