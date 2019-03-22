@@ -1,0 +1,26 @@
+/**!
+ * antiSpamMail - v0.1.5 - 2015-02-16 | Copyright (c) 2015 Michael Schulze | MIT license
+ */
+@media screen, projection {
+
+  /* use image replacement solution
+   * by Nicolas Gallagher (2011)
+   * http://nicolasgallagher.com/another-css-image-replacement-technique/ */
+  .crypt {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    border: 0;
+    background-color: transparent;
+  }
+
+}
+
+@media print {
+
+  /* force to hide on printed pages */
+  .crypt {
+    display: none;
+  }
+
+}
