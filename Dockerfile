@@ -1,4 +1,4 @@
-FROM node:9-alpine as stage-build
+FROM node:13-alpine as stage-build
 
 LABEL maintainer="martin@finkmartin.com"
 
@@ -15,7 +15,7 @@ RUN yarn build
 
 RUN yarn --production --frozen-lockfile
 
-FROM node:9-alpine
+FROM node:13-alpine
 
 WORKDIR /app
 
