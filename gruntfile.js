@@ -1,5 +1,5 @@
 /*
- *    Copyright 2018 Martin Fink
+ *    Copyright 2020 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  *    limitations under the License.
  *
  */
+
+const sass = require('node-sass');
 
 module.exports = function (grunt) {
     'use strict';
@@ -120,6 +122,7 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 options: {
+                    implementation: sass,
                     style: 'compressed',
                     sourcemap: 'none',
                 },

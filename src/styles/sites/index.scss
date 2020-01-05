@@ -1,5 +1,5 @@
 /*
- *    Copyright 2018 Martin Fink
+ *    Copyright 2020 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -18,20 +18,32 @@
 @import "../main";
 
 body {
-  background-color: #130f40;
+  background-color: #0f4c81;
 }
 
 html * {
   color: #f8f9fa;
 }
 
-a:hover, a:hover div * {
-  color: #eb4d4b;
-  text-shadow: 5px 5px 10px #212529;
+a {
+  display: inline-block;
+
+  &:after {
+    content: '';
+    border-bottom: solid 2px #ffffff;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+    display: block;
+    transform-origin: 0 50%;
+  }
+
+  &:hover:after {
+    transform: scaleX(1);
+  }
 }
 
-a, a:hover, a div *, a:hover div * {
-  transition: color .25s, text-shadow .25s;
+i.ion {
+  width: 16px;
 }
 
 .footer {

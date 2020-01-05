@@ -1,5 +1,5 @@
 /*
- *    Copyright 2018 Martin Fink
+ *    Copyright 2020 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as path from 'path';
-import * as moment from 'moment';
 import errorHandler = require('errorhandler');
 import methodOverride = require('method-override');
 import {Request, Response} from 'express';
@@ -80,12 +79,7 @@ export class Server {
         const router = express.Router();
 
         router.get('/', (req: Request, res: Response) => {
-            res.render('index', {
-                age: moment().diff('1999-03-18', 'years'),
-            });
-        });
-        router.get('/curriculum', (req: Request, res: Response) => {
-            res.render('curriculum');
+            res.render('index');
         });
 
         router.get('*', (req: Request, res: Response) => {

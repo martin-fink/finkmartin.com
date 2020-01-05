@@ -1,5 +1,5 @@
 /*
- *    Copyright 2018 Martin Fink
+ *    Copyright 2020 Martin Fink
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,20 +15,18 @@
  *
  */
 
+@import url('https://fonts.googleapis.com/css?family=Bitter|Montserrat+Subrayada&display=swap');
+
+body {
+  font-family: 'Bitter', serif;
+}
+
 a {
   text-decoration: none !important;
   color: inherit;
-}
-
-p {
-  font-size: 1.25rem;
-}
-
-html * {
   font-family: 'Montserrat', sans-serif;
 }
 
-// No transitions on preload
-.preload {
-  transition: none !important;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat Subrayada', sans-serif;
 }
