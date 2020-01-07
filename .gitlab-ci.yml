@@ -6,6 +6,7 @@ services:
 variables:
   REGISTRY: registry.gitlab.com
   CONTAINER_IMAGE: $REGISTRY/martin-fink/finkmartin-website
+  DOCKER_SERVICE_NAME: homepage
 
 stages:
   - build
@@ -84,6 +85,6 @@ deploy:
     - SETUP="cd Container"
     - LOGIN="docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com"
     - PULL="docker-compose -f docker-compose.yml pull --quiet"
-    - BUILD="docker-compose -f docker-compose.yml up --build --detach"
+    - BUILD="docker-compose -f docker-compose.yml up $DOCKER_SERVICE_NAME --build --detach"
     - ssh deploy@${SERVER_URL} "$SETUP && $LOGIN && $PULL && $BUILD"
   stage: deploy
