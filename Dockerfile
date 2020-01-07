@@ -6,12 +6,14 @@ WORKDIR /app
 
 COPY package.json yarn.lock /app/
 
-RUN yarn install --production --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 COPY src/ /app/src
 COPY gruntfile.js /app
 
 RUN yarn build
+
+RUN yarn install --production --frozen-lockfile
 
 FROM node:13-alpine
 
