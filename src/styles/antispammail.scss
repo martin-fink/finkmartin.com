@@ -15,7 +15,10 @@
  *
  */
 
-.antispammail:after {
-  content: attr(data-name) "@" attr(data-domain) "." attr(data-tld);
+.antispammail {
   cursor: pointer;
+
+  &:after {
+    content: attr(data-name) "@" attr(data-domain) "." attr(data-tld);
+  }
 }
