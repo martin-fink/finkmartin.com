@@ -82,7 +82,7 @@ deploy:
   only:
     - tags
   script:
-    - SETUP="cd Container"
+    - SETUP="cd container/martin"
     - LOGIN="docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com"
     - PULL="docker-compose -f docker-compose.yml pull --quiet"
     - BUILD="docker-compose -f docker-compose.yml up --build --detach $DOCKER_SERVICE_NAME"
