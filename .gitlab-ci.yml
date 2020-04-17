@@ -5,7 +5,7 @@ services:
 
 variables:
   REGISTRY: registry.gitlab.com
-  CONTAINER_IMAGE: $REGISTRY/martin-fink/finkmartin-website
+  CONTAINER_IMAGE: $REGISTRY/martin-fink/finkmartin.com
   DOCKER_SERVICE_NAME: homepage
 
 stages:
