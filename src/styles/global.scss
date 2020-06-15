@@ -15,8 +15,6 @@
  *
  */
 
-@import url('https://fonts.googleapis.com/css?family=Bitter&display=swap');
-
 body {
   font-family: 'Bitter', serif;
 }
@@ -25,4 +23,11 @@ a {
   text-decoration: none !important;
   color: inherit;
   font-family: 'Montserrat', sans-serif;
+}
+
+ion-icon {
+  display: inline-block;
+  height: 1.2em;
+  width: 1em;
+  vertical-align: text-bottom;
 }

@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'node_modules/ionicons/dist/fonts',
+                        cwd: 'src/fonts',
                         src: ['*'],
                         dest: './dist/fonts/',
                     },
@@ -63,6 +63,12 @@ module.exports = function (grunt) {
                         cwd: 'src',
                         src: ['locales/*'],
                         dest: './dist/',
+                    },
+                    {
+                        expand: true,
+                        cwd: 'node_modules/ionicons/dist',
+                        src: ['ionicons/**/*'],
+                        dest: './dist/scripts',
                     },
                 ],
             },
@@ -155,11 +161,10 @@ module.exports = function (grunt) {
                     },
                 },
                 files: {
-                    // 'dist/scripts/bundle.js': [
-                    //     'node_modules/particles.js/particles.js',
-                    //     'node_modules/jquery/dist/jquery.js',
-                    //     'src/scripts/*.js',
-                    // ],
+                    'dist/scripts/bundle.js': [
+                        'node_modules/ionicons/dist/ionicons.js',
+                        // 'src/scripts/*.js',
+                    ],
                 },
             },
         },
