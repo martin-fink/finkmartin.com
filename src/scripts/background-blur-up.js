@@ -17,17 +17,19 @@
 
 window.onload = () => {
     const $container = document.getElementsByClassName('background-container')[0];
+
+    const backgroundBlurred = $container.getElementsByClassName('background-blurred')[0];
+
     // Matchs the "url(...)"
     let bigBgSrc = getComputedStyle($container).backgroundImage.match(/url\((.+?)\)/i);
 
     if (bigBgSrc) {
         // Removes quotations
-        bigBgSrc = bigBgSrc[1].replace(/'|"/g, '')
+        bigBgSrc = bigBgSrc[1].replace(/['"]/g, '')
 
         const img = document.createElement('img');
         img.onload = () => {
-            $container.getElementsByClassName('background-blurred')[0]
-                .classList.add('background-blurred--hide')
+            backgroundBlurred.setAttribute('style', 'opacity: 0')
         };
         img.setAttribute('src', bigBgSrc);
     }
