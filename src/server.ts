@@ -68,6 +68,7 @@ export class Server {
         this.app.use('/styles', express.static(__dirname + '/styles'));
         this.app.use('/scripts', express.static(__dirname + '/scripts'));
         this.app.use('/fonts', express.static(__dirname + '/fonts'));
+        this.app.use('/img', express.static(__dirname + '/img'));
 
         // configure user routes
         const router = express.Router();

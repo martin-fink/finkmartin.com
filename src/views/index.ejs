@@ -18,7 +18,7 @@
           content="martin fink südtirol münchen verdings developer student android website hackathon tum technische universität tfo technologische fachoberschule max valier">
     <meta name="description" content="Martin Fink | Developer, Student @ TUM">
 
-<!--    <script async src="/scripts/bundle.js"></script>-->
+    <!--    <script async src="/scripts/bundle.js"></script>-->
 
     <!-- Favicon-stuff -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=PYqRnGl0OP">
@@ -29,57 +29,73 @@
     <link rel="shortcut icon" href="/favicon.ico?v=PYqRnGl0OP">
     <meta name="msapplication-TileColor" content="#0f4c81">
     <meta name="theme-color" content="#0f4c81">
+    <script src="/scripts/bundle.js"></script>
 </head>
 
-<body class="preload">
-<div class="vertical-center">
-    <div class="container my-3 my-lg-5">
-        <h1 class="font-weight-bold text-center my-3">Martin Fink</h1>
+<body class="preload background-container">
+<div class="background-blurred"></div>
+<div class="content">
+    <div class="vertical-center">
+        <div class="container my-3 my-lg-5">
+            <h1 class="font-weight-bold text-center my-3">Martin Fink</h1>
 
-        <div class="text-center">
-            <p class="my-1">
-                Developer, Student, South-Tyrolean.
-            </p>
+            <div class="text-center">
+                <p class="my-1">
+                    Developer, Student, South-Tyrolean.
+                </p>
+            </div>
+
         </div>
+    </div>
 
+    <div class="footer">
+        <div id="footer-transitions" class="p-3">
+            <a class="text-uppercase mx-2" target="_blank" href="https://twitter.com/mrtn_fink">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="logo-twitter" class="mr-2"></ion-icon>
+                    <span>Twitter</span>
+                </div>
+            </a>
+            <a class="text-uppercase mx-2" target="_blank" href="https://www.linkedin.com/in/fink-martin">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="logo-linkedin" class="mr-2"></ion-icon>
+                    <span>LinkedIn</span>
+                </div>
+            </a>
+            <a class="text-uppercase mx-2" target="_blank" href="https://gitlab.com/martin-fink">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="git-branch" class="mr-2"></ion-icon>
+                    <span>Gitlab</span>
+                </div>
+            </a>
+            <a class="text-uppercase mx-2" target="_blank" href="https://github.com/martin-fink">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="logo-github" class="mr-2"></ion-icon>
+                    <span>Github</span>
+                </div>
+            </a>
+
+            <a class="text-uppercase mx-2">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="mail" class="mr-2"></ion-icon>
+                </div>
+                <span class="antispammail"
+                      data-name="martin"
+                      data-domain="finkmartin"
+                      data-tld="com"
+                      onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></span>
+            </a>
+
+            <a class="text-uppercase mx-2" target="_blank"
+               href="https://finkmartin.com/public/martin_at_finkmartin_dot_com.asc">
+                <div class="nowrap d-inline-block">
+                    <ion-icon name="lock-closed" class="mr-2"></ion-icon>
+                    <span>PGP-Key</span>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
-
-<div class="footer">
-    <div id="footer-transitions" class="p-3">
-        <a class="text-uppercase mx-2" target="_blank" href="https://twitter.com/mrtn_fink">
-            <div class="nowrap d-inline-block"><ion-icon name="logo-twitter" class="mr-2"></ion-icon><span>Twitter</span>
-            </div>
-        </a>
-        <a class="text-uppercase mx-2" target="_blank" href="https://www.linkedin.com/in/fink-martin">
-            <div class="nowrap d-inline-block"><ion-icon name="logo-linkedin" class="mr-2"></ion-icon><span>LinkedIn</span>
-            </div>
-        </a>
-        <a class="text-uppercase mx-2" target="_blank" href="https://gitlab.com/martin-fink">
-            <div class="nowrap d-inline-block"><ion-icon name="git-branch" class="mr-2"></ion-icon><span>Gitlab</span>
-            </div>
-        </a>
-        <a class="text-uppercase mx-2" target="_blank" href="https://github.com/martin-fink">
-            <div class="nowrap d-inline-block"><ion-icon name="logo-github" class="mr-2"></ion-icon><span>Github</span>
-            </div>
-        </a>
-
-        <a class="text-uppercase mx-2">
-            <div class="nowrap d-inline-block"><ion-icon name="mail" class="mr-2"></ion-icon></div>
-            <span class="antispammail"
-                  data-name="martin"
-                  data-domain="finkmartin"
-                  data-tld="com"
-                  onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;"></span>
-        </a>
-
-        <a class="text-uppercase mx-2" target="_blank" href="https://finkmartin.com/public/martin_at_finkmartin_dot_com.asc">
-            <div class="nowrap d-inline-block"><ion-icon name="lock-closed" class="mr-2"></ion-icon><span>PGP-Key</span>
-            </div>
-        </a>
-    </div>
-</div>
-
 </body>
 
 </html>

@@ -54,6 +54,12 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
+                        cwd: 'src/img',
+                        src: ['*'],
+                        dest: './dist/img/',
+                    },
+                    {
+                        expand: true,
                         cwd: 'src',
                         src: ['static/**/*'],
                         dest: './dist/',
@@ -162,8 +168,8 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dist/scripts/bundle.js': [
-                        'node_modules/ionicons/dist/ionicons.js',
-                        // 'src/scripts/*.js',
+                        // 'node_modules/jquery/dist/jquery.slim.js',
+                        'src/scripts/*.js',
                     ],
                 },
             },
