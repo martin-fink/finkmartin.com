@@ -168,6 +168,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'dist/scripts/bundle.js': [
+                        'node_modules/ionicons/dist/ionicons.js',
                         // 'node_modules/jquery/dist/jquery.slim.js',
                         'src/scripts/*.js',
                     ],
