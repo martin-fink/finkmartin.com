@@ -16,7 +16,7 @@ stages:
 
 build:
   stage: build
-  image: node:15-alpine
+  image: node:13-alpine
   only:
     - tags
   script:
