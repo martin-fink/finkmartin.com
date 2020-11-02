@@ -4,27 +4,45 @@ services:
   - docker:dind
 
 variables:
-  REGISTRY: registry.gitlab.com
-  CONTAINER_IMAGE: $REGISTRY/martin-fink/finkmartin.com
-  DOCKER_SERVICE_NAME: homepage
+  REGISTRY: registry.baey.eu
+  CONTAINER_IMAGE: $REGISTRY/martin/finkmartin.com
+  DOCKER_SERVICE_NAME: finkmartin.com
+  DOCKER_DRIVER: overlay2
 
 stages:
   - build
+  - package
   - deploy
 
 build:
-  except:
-    - branches
+  stage: build
+  image: node:15-alpine
   only:
     - tags
   script:
-    - docker build -t $CONTAINER_IMAGE:$CI_COMMIT_REF_NAME -t $CONTAINER_IMAGE:latest .
+    - yarn install --frozen-lockfile
+    - yarn build
+    - yarn install --production --frozen-lockfile
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 hour
+
+docker-build:
+  stage: package
+  only:
+    - tags
+  before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $REGISTRY
-    - docker push $CONTAINER_IMAGE:$CI_COMMIT_REF_NAME
-    - docker push $CONTAINER_IMAGE:latest
-  stage: build
+  script:
+    - docker build -t ${CONTAINER_IMAGE}:$CI_COMMIT_REF_NAME -t ${CONTAINER_IMAGE}:latest .
+    - docker push ${CONTAINER_IMAGE}:$CI_COMMIT_REF_NAME
+    - docker push ${CONTAINER_IMAGE}:latest
 
 deploy:
+  stage: deploy
+  only:
+    - tags
   before_script:
     ##
     ## Install ssh-agent if not already installed, it is required by Docker.
@@ -69,7 +87,7 @@ deploy:
     ## Replace example.com with your private server's domain name. Repeat that
     ## command if you have more than one server to connect to.
     ##
-    - ssh-keyscan "$SERVER_URL" > ~/.ssh/known_hosts
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
     ##
@@ -78,13 +96,10 @@ deploy:
     ## WARNING: Use this only with the Docker executor, if you use it with shell
     ## you will overwrite your user's SSH config.
     ##
-    #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  only:
-    - tags
+    #- echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
-    - SETUP="cd container/martin"
-    - LOGIN="docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com"
-    - PULL="docker-compose -f docker-compose.yml pull --quiet"
+    - SETUP="cd $DEPLOY_LOCATION"
+    - LOGIN="docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $REGISTRY"
+    - PULL="docker-compose -f docker-compose.yml pull --quiet $DOCKER_SERVICE_NAME"
     - BUILD="docker-compose -f docker-compose.yml up --build --detach $DOCKER_SERVICE_NAME"
-    - ssh deploy@${SERVER_URL} "$SETUP && $LOGIN && $PULL && $BUILD"
-  stage: deploy
+    - ssh -p $SSH_PORT deploy@${SERVER_URL} "$SETUP && $LOGIN && $PULL && $BUILD"
