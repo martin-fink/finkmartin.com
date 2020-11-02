@@ -25,8 +25,9 @@ build:
     - yarn install --production --frozen-lockfile
   artifacts:
     paths:
-      - build/libs/*.jar
-    expire_in: 1 hour
+      - dist
+      - node_modules
+    expire_in: 30 minutes
 
 docker-build:
   stage: package
