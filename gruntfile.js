@@ -60,9 +60,9 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'src',
-                        src: ['static/**/*'],
-                        dest: './dist/',
+                        cwd: 'src/static',
+                        src: ['**/*'],
+                        dest: './dist',
                     },
                     {
                         expand: true,
@@ -79,29 +79,9 @@ module.exports = function (grunt) {
                 ],
             },
         },
-        ts: {
-            app: {
-                files: [{
-                    src: ['src/\*\*/\*.ts', '!src/.baseDir.ts'],
-                    dest: './dist',
-                }],
-                options: {
-                    module: 'commonjs',
-                    target: 'es6',
-                    sourceMap: false,
-                    rootDir: 'src',
-                    minifyJs: true,
-                    removeComments: true,
-                },
-            },
-        },
         watch: {
-            ts: {
-                files: ['src/**/*.ts'],
-                tasks: ['ts'],
-            },
             statics: {
-                files: ['src/locales/**/*', 'src/static/**/*'],
+                files: ['src/static/**/*'],
                 tasks: ['copy'],
             },
             styles: {
@@ -112,8 +92,8 @@ module.exports = function (grunt) {
                 files: ['src/scripts/**/*.js'],
                 tasks: ['uglify'],
             },
-            views: {
-                files: ['src/views/**/*.ejs'],
+            html: {
+                files: ['src/html/**/*.html'],
                 tasks: ['htmlmin'],
             }
         },
@@ -125,9 +105,9 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src/views',
-                    src: ['**/*.ejs', '*.ejs'],
-                    dest: 'dist/views',
+                    cwd: 'src/html',
+                    src: ['**/*.html', '*.html'],
+                    dest: 'dist',
                 }],
             },
         },
@@ -151,7 +131,7 @@ module.exports = function (grunt) {
         },
         purifycss: {
             dist: {
-                src: ['dist/views/**/*.ejs'],
+                src: ['dist/html/**/*.html'],
                 css: ['dist/styles/*.css'],
                 dest: 'dist/styles',
             },
@@ -169,7 +149,6 @@ module.exports = function (grunt) {
                 files: {
                     'dist/scripts/bundle.js': [
                         'node_modules/ionicons/dist/ionicons.js',
-                        // 'node_modules/jquery/dist/jquery.slim.js',
                         'src/scripts/*.js',
                     ],
                 },
@@ -179,14 +158,12 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerTask('default', [
         'copy',
-        'ts',
         'htmlmin',
         'sass',
         'purifycss',
@@ -195,7 +172,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('dev', [
         'copy',
-        'ts',
         'htmlmin',
         'sass',
         'uglify',
