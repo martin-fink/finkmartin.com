@@ -131,7 +131,7 @@ module.exports = function (grunt) {
         },
         purifycss: {
             dist: {
-                src: ['dist/html/**/*.html'],
+                src: ['dist/**/*.html'],
                 css: ['dist/styles/*.css'],
                 dest: 'dist/styles',
             },
