@@ -7,6 +7,7 @@ build:
     - yarn install --frozen-lockfile
     - yarn build
   artifacts:
+    expire_in: 30 min
     paths:
       - dist
 
@@ -20,5 +21,4 @@ deploy:
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - rsync -rav -e "ssh -p $SSH_PORT" --delete dist/ deploy@$SERVER_URL:$DEPLOY_LOCATION
+    - rsync -rav -e "ssh -p $SSH_PORT -o UserKnownHostsFile=$SSH_KNOWN_HOSTS" --delete dist/ deploy@$SERVER_URL:$DEPLOY_LOCATION
