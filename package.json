@@ -14,7 +14,7 @@
     "dev": "grunt dev && grunt watch"
   },
   "dependencies": {
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.0.0",
     "ionicons": "^5.5.0"
   },
   "devDependencies": {
