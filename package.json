@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.0",
-    "ionicons": "^5.5.0"
+    "ionicons": "^6.0.0"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

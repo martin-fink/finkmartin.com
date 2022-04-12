@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@stencil/core@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.4.0.tgz#17b45629c8986e35dcbce3f7dab7d64beede83f2"
-  integrity sha512-gU6+Yyd6O0KrCSS/O6j8KKqmRo+/Dcs2fI0+APCpbAWK+nqhwDISpdnSEfGDCLMoAC08XOZCycBRk2K1VGnEcg==
+"@stencil/core@~2.12.0":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.12.1.tgz#92364d3e57337b8d36dd9b70cfbed2833929f22d"
+  integrity sha512-u24TZ+FEvjnZt5ZgIkLjLpUNsO6Ml3mUZqwmqk81w6RWWz75hgB5p4RFI5rvuErFeh2xvMIGo+pNdG24XUBz1A==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
@@ -1609,12 +1609,12 @@ invert-kv@^1.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
   integrity sha1-EEqOSqym09jNFXqO+L+rLXo//bY=
 
-ionicons@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-5.5.0.tgz#74ab783be11bee60e4351153c80b6d0682e5125a"
-  integrity sha512-0DUHTeoIrGSY+KNyNDaQW7v5+mDstjSkjx8dzT925kXKYBDrN3sGs8kUcSSQbTK132U4CbgDEZkn7FDUa9x8Qw==
+ionicons@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-6.0.1.tgz#e7dc8c9d6d6cff33f3c64c095b5df645fbedd917"
+  integrity sha512-xQekOJsxH82O7oB+3F60zeRggCdND9pJ/k0E6IJDVUGGlCj5mlyFqNgxUimytKgstPGv3S+3EmCxjefvtGgWUg==
   dependencies:
-    "@stencil/core" "^2.4.0"
+    "@stencil/core" "~2.12.0"
 
 is-absolute@^1.0.0:
   version "1.0.0"
