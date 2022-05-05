@@ -1,7 +1,7 @@
 build:
   only:
     - tags
-  image: node:17
+  image: node:18
   stage: build
   script:
     - yarn install --frozen-lockfile
